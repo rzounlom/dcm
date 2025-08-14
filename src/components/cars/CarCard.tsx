@@ -6,10 +6,12 @@ import { TiHeartFullOutline } from "react-icons/ti";
 
 interface CarCardProps {
   car: Car;
+  deleteCar: (carId: string) => void;
 }
 
 const CarCard: React.FC<CarCardProps> = ({
-  car: { year, make, model, description, imageUrl, favorite },
+  deleteCar,
+  car: { id, year, make, model, description, imageUrl, favorite },
 }) => {
   return (
     <div className="car-card">
@@ -33,7 +35,9 @@ const CarCard: React.FC<CarCardProps> = ({
       </div>
       <div className="car-footer">
         <button className="edit-btn">Edit</button>
-        <button className="delete-btn">Delete</button>
+        <button className="delete-btn" onClick={() => deleteCar(id)}>
+          Delete
+        </button>
       </div>
     </div>
   );

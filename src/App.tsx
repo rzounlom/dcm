@@ -36,11 +36,16 @@ function App() {
     setCarsState([newCar, ...carsState]);
   };
 
+  const deleteCar = (carId: string) => {
+    const updatedCars = carsState.filter((car) => car.id !== carId);
+    setCarsState(updatedCars);
+  };
+
   return (
     <div className="page-container">
       <Navbar addCar={addCar} />
       <Landing />
-      <CarList cars={carsState} />
+      <CarList cars={carsState} deleteCar={deleteCar} />
     </div>
   );
 }
