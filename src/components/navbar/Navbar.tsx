@@ -2,7 +2,11 @@ import "./Navbar.css";
 
 import { type FC, useEffect, useState } from "react";
 
-const Navbar: FC = () => {
+interface NavbarProps {
+  addCar: () => void;
+}
+
+const Navbar: FC<NavbarProps> = ({ addCar }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -30,7 +34,11 @@ const Navbar: FC = () => {
               </a>
             </li>
             <li>
-              <a className={scrolled ? "scrolled" : ""} href="#">
+              <a
+                className={scrolled ? "scrolled" : ""}
+                href="/#cars"
+                onClick={addCar}
+              >
                 Add Car
               </a>
             </li>
