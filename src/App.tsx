@@ -41,11 +41,32 @@ function App() {
     setCarsState(updatedCars);
   };
 
+  const toggleFavorite = (carId: string) => {
+    const updatedCars = carsState.map((car) => {
+      // If this is the car we want to toggle, flip its favorite status
+      if (car.id === carId) {
+        return {
+          ...car, // Spread all existing car properties
+          favorite: !car.favorite, // Toggle the favorite boolean (true becomes false, false becomes true)
+          updatedAt: new Date().toISOString(), // Update the timestamp
+        };
+      }
+      // Return the car unchanged if it's not the one we're toggling
+      return car;
+    });
+
+    setCarsState(updatedCars);
+  };
+
   return (
     <div className="page-container">
       <Navbar addCar={addCar} />
       <Landing />
-      <CarList cars={carsState} deleteCar={deleteCar} />
+      <CarList
+        cars={carsState}
+        deleteCar={deleteCar}
+        toggleFavorite={toggleFavorite}
+      />
     </div>
   );
 }

@@ -7,17 +7,23 @@ import { TiHeartFullOutline } from "react-icons/ti";
 interface CarCardProps {
   car: Car;
   deleteCar: (carId: string) => void;
+  toggleFavorite: (carId: string) => void;
 }
 
 const CarCard: React.FC<CarCardProps> = ({
   deleteCar,
+  toggleFavorite,
   car: { id, year, make, model, description, imageUrl, favorite },
 }) => {
   return (
     <div className="car-card">
       <div className="favorite-icon">
         <div className="favorite-icon">
-          {favorite ? <TiHeartFullOutline /> : <IoMdHeartEmpty />}
+          {favorite ? (
+            <TiHeartFullOutline onClick={() => toggleFavorite(id)} />
+          ) : (
+            <IoMdHeartEmpty onClick={() => toggleFavorite(id)} />
+          )}
         </div>
       </div>
       <div className="car-img">
